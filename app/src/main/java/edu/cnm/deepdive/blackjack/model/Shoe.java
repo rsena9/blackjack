@@ -14,7 +14,7 @@ import java.util.Date;
             entity = Card.class,
             childColumns = "marker_id",
             parentColumns = "card_id",
-            onDelete = ForeignKey.NO_ACTION;
+            onDelete = ForeignKey.NO_ACTION
         )
     }
 )
