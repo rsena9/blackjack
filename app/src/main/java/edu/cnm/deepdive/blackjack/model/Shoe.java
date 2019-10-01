@@ -4,10 +4,20 @@ import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 
+import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 import java.util.Date;
 
-@Entity
+@Entity(
+    foreignKeys = {
+        @ForeignKey(
+            entity = Card.class,
+            childColumns = "marker_id",
+            parentColumns = "card_id",
+            onDelete = ForeignKey.NO_ACTION;
+        )
+    }
+)
 public class Shoe {
 
   @PrimaryKey(autoGenerate = true)
@@ -18,7 +28,8 @@ public class Shoe {
   @NonNull
   private Date created = new Date();
 
-  private long marker;
+  @ColumnInfo(name = "marker_id", index = true)
+  private Long markerId;
 
   public long getId() {
     return id;
@@ -37,12 +48,12 @@ public class Shoe {
     this.created = created;
   }
 
-  public long getMarker() {
-    return marker;
+  public Long getMarkerId() {
+    return markerId;
   }
 
-  public void setMarker(long marker) {
-    this.marker = marker;
+  public void setMarkerId(Long markerId) {
+    this.markerId = markerId;
   }
 
 }
